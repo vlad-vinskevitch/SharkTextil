@@ -1,0 +1,25 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: {{ include "database.fullname" . }}
+  labels:
+    {{- include "database.labels" . | nindent 4 }}
+spec:
+  ttlSecondsAfterFinished: 100
+  template:
+    metadata:
+      labels:
+        {{- include "database.selectorLabels" . | nindent 8 }}
+    spec:
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "gcr.io/{{.Values.image.projectID}}/{{.Values.image.path}}/{{.Values.image.name}}:{{.Values.image.tag}}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+            - name: LIQBASE_URL_MONGODB
+              value: {{ .Values.mongodb.url | quote }}
+            - name: LIQBASE_URL_POSTGRESQL
+              value: {{ .Values.postgresql.url | quote }}
+      restartPolicy: Never
+  backoffLimit: 2
+

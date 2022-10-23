@@ -1,0 +1,9 @@
+-- liquibase formatted sql
+
+-- changeset liquibase:5
+CREATE TRIGGER UPDATE_SHOP_USER_UPDATED_DATE
+    BEFORE UPDATE
+    ON
+        SHOP_USER
+    FOR EACH ROW
+    EXECUTE PROCEDURE UPDATE_UPDATED_DATE();

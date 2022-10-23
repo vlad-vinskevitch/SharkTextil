@@ -1,0 +1,13 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /api/v1/shop
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5433/shark_textil
+    username: root
+    password: root
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl: update

@@ -1,0 +1,12 @@
+ steps:
+ - name: 'gcr.io/cloud-builders/docker'
+   args: ['build', '-t', 'gcr.io/$PROJECT_ID/devops/database:$SHORT_SHA', '.']
+
+ - name: 'gcr.io/cloud-builders/docker'
+   args: ['push', 'gcr.io/$PROJECT_ID/devops/database:$SHORT_SHA']
+
+ - name: 'gcr.io/$PROJECT_ID/helm:3.2.0'
+   env:
+     - CLOUDSDK_COMPUTE_REGION=us-central1-c
+     - CLOUDSDK_CONTAINER_CLUSTER=bf-cluster
+   args: ['upgrade', '--set', 'image.tag=$SHORT_SHA', '--set', 'image.projectID=$PROJECT_ID', 'database', './charts']

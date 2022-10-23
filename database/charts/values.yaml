@@ -1,0 +1,21 @@
+image:
+  name: database
+  pullPolicy: IfNotPresent
+  path:  devops
+  projectID: projectID
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: "0.0.1"
+
+labels:
+  run: database
+selectorLabels:
+  run: database
+
+fullnameOverride: "database"
+
+mongodb:
+  url: mongodb://wizard_user_root:Cb0pqDMG9xnP@mongodb:27017/wizard_db?authSource=admin
+  
+postgresql:
+  url: jdbc:postgresql://postgresql:5432/130t_transactional?user=wizard_user&password=VLnSKk7VeeNC
+
