@@ -17,6 +17,7 @@
 
     <modules>
         <module>infrastructure-postgresql</module>
+        <module>infrastructure-kafka</module>
     </modules>
 
     <properties>
