@@ -61,8 +61,11 @@ class UserMapperImplTest {
                 .userRole(UserRole.ADMIN)
                 .userName("userName")
                 .userLastName("userLastName")
+                .email("email")
+                .password("password")
                 .build();
     }
+
     private UserEntity givenUserEntity() {
         return UserEntity.builder()
                 .userId(1L)
@@ -76,6 +79,8 @@ class UserMapperImplTest {
                         .build())
                 .userName("userName")
                 .userLastName("userLastName")
+                .email("email")
+                .password("password")
                 .build();
     }
 }

@@ -1,4 +1,4 @@
-package com.shark.textil.rest.dto;
+package com.shark.textil.rest.dto.user;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

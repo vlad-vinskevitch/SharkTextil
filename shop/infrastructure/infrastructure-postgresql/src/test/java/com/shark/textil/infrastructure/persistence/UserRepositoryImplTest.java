@@ -65,11 +65,30 @@ class UserRepositoryImplTest {
         verify(jpaRepository).save(userEntity);
     }
 
+    @Test
+    void givenEmail_whenFindByEmail_thenReturnUser() {
+        final User user = this.givenUser();
+        final UserEntity userEntity = this.givenUserEntity();
+        final String email = "email";
+
+        when(userMapper.asUser(userEntity)).thenReturn(user);
+        when(jpaRepository.getByEmail(email)).thenReturn(userEntity);
+
+        final User actual = this.userRepository.getByEmail(email);
+
+        assertThat(actual).isEqualTo(user);
+
+        verify(userMapper).asUser(userEntity);
+        verify(jpaRepository).getByEmail(email);
+    }
+
     private User givenUser() {
         return User.builder()
                 .userId(1L)
                 .userStatus(UserStatus.ACTIVE)
                 .userRole(UserRole.ADMIN)
+                .email("email")
+                .password("password")
                 .userName("userName")
                 .userLastName("userLastName")
                 .build();
@@ -88,6 +107,8 @@ class UserRepositoryImplTest {
                         .build())
                 .userName("userName")
                 .userLastName("userLastName")
+                .email("email")
+                .password("password")
                 .build();
     }
 }

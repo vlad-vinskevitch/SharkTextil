@@ -18,6 +18,7 @@
     <modules>
         <module>infrastructure-postgresql</module>
         <module>infrastructure-kafka</module>
+        <module>infrastructure-security</module>
     </modules>
 
     <properties>

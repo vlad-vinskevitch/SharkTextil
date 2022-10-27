@@ -41,8 +41,18 @@
             <groupId>${project.groupId}</groupId>
             <artifactId>infrastructure-kafka</artifactId>
         </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>infrastructure-security</artifactId>
+        </dependency>
 
 <!--        Dependencies-->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
+            <scope>provided</scope>
+        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>

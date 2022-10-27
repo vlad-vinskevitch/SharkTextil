@@ -8,6 +8,8 @@ import com.shark.textil.repository.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 @RequiredArgsConstructor
 @Repository
 public class UserRepositoryImpl implements UserRepository {
@@ -20,5 +22,16 @@ public class UserRepositoryImpl implements UserRepository {
     public User save(final User user) {
         final UserEntity entity = this.userJPARepository.save(this.userMapper.asUserEntity(user));
         return this.userMapper.asUser(entity);
+    }
+
+    @Override
+    public Optional<User> findByEmail(final String email) {
+        return this.userJPARepository.findByEmail(email)
+                .map(this.userMapper::asUser);
+    }
+
+    @Override
+    public User getByEmail(String email) {
+        return this.userMapper.asUser(this.userJPARepository.getByEmail(email));
     }
 }

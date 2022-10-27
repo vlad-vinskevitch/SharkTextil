@@ -42,6 +42,12 @@ public class UserEntity {
     @ToString.Exclude
     private UserRoleEntity userRoleEntity;
 
+    @Column(name = "EMAIL")
+    private String email;
+
+    @Column(name = "PASSWORD")
+    private String password;
+
     @Column(name = "USER_NAME")
     private String userName;
 

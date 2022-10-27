@@ -1,4 +1,4 @@
-package com.shark.textil.rest.dto;
+package com.shark.textil.rest.dto.user;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -14,6 +14,8 @@ public class UserDTO {
     private Long userId;
     private UserStatusDTO userStatus;
     private UserRoleDTO userRole;
+    private String email;
+    private String password;
     private String userName;
     private String userLastName;
 }

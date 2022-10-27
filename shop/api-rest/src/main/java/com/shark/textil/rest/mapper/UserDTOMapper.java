@@ -1,7 +1,7 @@
 package com.shark.textil.rest.mapper;
 
 import com.shark.textil.domain.user.User;
-import com.shark.textil.rest.dto.UserDTO;
+import com.shark.textil.rest.dto.user.UserDTO;
 import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")
