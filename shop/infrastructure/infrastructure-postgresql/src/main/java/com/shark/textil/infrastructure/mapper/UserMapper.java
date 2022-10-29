@@ -9,17 +9,19 @@ import com.shark.textil.infrastructure.jpa.entity.user.UserStatusEntity;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
+import java.util.List;
 import java.util.Locale;
+import java.util.stream.Collectors;
 
 @Mapper(componentModel = "spring")
 public interface UserMapper {
 
     @Mapping(expression = "java(asUserStatus(entity.getUserStatusEntity()))", target = "userStatus")
-    @Mapping(expression = "java(asUserRole(entity.getUserRoleEntity()))", target = "userRole")
+    @Mapping(expression = "java(asUserRoles(entity.getAuthoritiesEntity()))", target = "authorities")
     User asUser(UserEntity entity);
 
     @Mapping(expression = "java(asUserStatusEntity(user.getUserStatus()))", target = "userStatusEntity")
-    @Mapping(expression = "java(asUserRoleEntity(user.getUserRole()))", target = "userRoleEntity")
+    @Mapping(expression = "java(asUserRoleEntity(user.getAuthorities()))", target = "authoritiesEntity")
     UserEntity asUserEntity(User user);
 
     default UserStatus asUserStatus(final UserStatusEntity src) {
@@ -33,14 +35,18 @@ public interface UserMapper {
                 .build();
     }
 
-    default UserRole asUserRole(final UserRoleEntity src) {
-        return UserRole.fromStatusId(src.getUserRoleId());
+    default List<UserRole> asUserRoles(final List<UserRoleEntity> authorities) {
+        return authorities.stream()
+                .map(src -> UserRole.fromStatusId(src.getRoleId()))
+                .collect(Collectors.toList());
     }
 
-    default UserRoleEntity asUserRoleEntity(final UserRole src) {
-        return UserRoleEntity.builder()
-                .userRoleId(src.getRoleId())
+    default List<UserRoleEntity> asUserRoleEntity(final List<UserRole> authorities) {
+        return authorities.stream()
+                .map(src -> UserRoleEntity.builder()
+                .roleId(src.getRoleId())
                 .description(src.name().toUpperCase(Locale.ROOT))
-                .build();
+                .build())
+                .collect(Collectors.toList());
     }
 }

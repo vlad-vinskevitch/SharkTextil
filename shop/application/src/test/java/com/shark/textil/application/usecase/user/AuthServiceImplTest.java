@@ -6,6 +6,7 @@ import com.shark.textil.domain.user.User;
 import com.shark.textil.domain.user.UserRole;
 import com.shark.textil.domain.user.UserStatus;
 import com.shark.textil.repository.user.UserRepository;
+import com.shark.textil.service.JwtTokenProviderService;
 import com.shark.textil.service.security.AuthService;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
@@ -19,6 +20,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
+
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -34,8 +37,9 @@ class AuthServiceImplTest {
     static class TestContextConfiguration {
         @Bean
         public AuthService authService(UserRepository userRepository,
-                                      PasswordEncoder passwordEncoder) {
-            return new AuthServiceImpl(userRepository, passwordEncoder);
+                                       PasswordEncoder passwordEncoder,
+                                       JwtTokenProviderService tokenProviderService) {
+            return new AuthServiceImpl(userRepository, passwordEncoder, tokenProviderService);
         }
 
         @Bean
@@ -46,6 +50,9 @@ class AuthServiceImplTest {
 
     @MockBean
     private UserRepository userRepository;
+
+    @MockBean
+    private JwtTokenProviderService tokenProviderService;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -93,7 +100,7 @@ class AuthServiceImplTest {
         return User.builder()
                 .userId(1L)
                 .userStatus(UserStatus.ACTIVE)
-                .userRole(UserRole.ADMIN)
+                .authorities(List.of(UserRole.USER))
                 .userName("userName")
                 .userLastName("userLastName")
                 .email("email")

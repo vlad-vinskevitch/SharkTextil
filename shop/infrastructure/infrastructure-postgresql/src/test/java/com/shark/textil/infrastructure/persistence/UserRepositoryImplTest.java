@@ -20,6 +20,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -86,7 +88,7 @@ class UserRepositoryImplTest {
         return User.builder()
                 .userId(1L)
                 .userStatus(UserStatus.ACTIVE)
-                .userRole(UserRole.ADMIN)
+                .authorities(List.of(UserRole.USER))
                 .email("email")
                 .password("password")
                 .userName("userName")
@@ -101,10 +103,10 @@ class UserRepositoryImplTest {
                         .userRoleId(1L)
                         .description("ACTIVE")
                         .build())
-                .userRoleEntity(UserRoleEntity.builder()
-                        .userRoleId(2L)
-                        .description("ADMIN")
-                        .build())
+                .authoritiesEntity(List.of(UserRoleEntity.builder()
+                        .roleId(1L)
+                        .description("USER")
+                        .build()))
                 .userName("userName")
                 .userLastName("userLastName")
                 .email("email")

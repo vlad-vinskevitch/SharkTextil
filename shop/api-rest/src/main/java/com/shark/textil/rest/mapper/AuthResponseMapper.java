@@ -4,13 +4,11 @@ import com.shark.textil.domain.user.User;
 import com.shark.textil.rest.dto.auth.AuthResponseDTO;
 import com.shark.textil.rest.dto.auth.AuthTokenDTO;
 import com.shark.textil.service.JwtTokenProviderService;
-import lombok.RequiredArgsConstructor;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.springframework.beans.factory.annotation.Autowired;
 
 @Mapper(componentModel = "spring")
-@RequiredArgsConstructor
 public abstract class AuthResponseMapper {
 
     @Autowired

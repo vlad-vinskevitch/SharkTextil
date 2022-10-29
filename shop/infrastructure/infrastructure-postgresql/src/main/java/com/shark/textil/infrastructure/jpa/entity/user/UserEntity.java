@@ -14,8 +14,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import java.util.List;
 
 @Data
 @Builder
@@ -36,11 +39,14 @@ public class UserEntity {
     @ToString.Exclude
     private UserStatusEntity userStatusEntity;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "ID_SHOP_USER_ROLE", nullable = false)
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "SHOP_USER_ROLE",
+            joinColumns = @JoinColumn(name = "ID_SHOP_USER", referencedColumnName = "ID_USER"),
+            inverseJoinColumns = @JoinColumn(name = "ID_SHOP_USER_ROLE", referencedColumnName = "ID_USER_ROLE")
+    )
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
-    private UserRoleEntity userRoleEntity;
+    private List<UserRoleEntity> authoritiesEntity;
 
     @Column(name = "EMAIL")
     private String email;

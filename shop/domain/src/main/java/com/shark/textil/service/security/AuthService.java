@@ -6,4 +6,6 @@ import com.shark.textil.domain.user.User;
 public interface AuthService {
 
     User authorize(AuthRequest authRequest);
+
+    User refreshToken(String refreshToken);
 }
