@@ -39,8 +39,8 @@ public class UserEntity {
     @ToString.Exclude
     private UserStatusEntity userStatusEntity;
 
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "SHOP_USER_ROLE",
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "JOIN_SHOP_USER_ROLE",
             joinColumns = @JoinColumn(name = "ID_SHOP_USER", referencedColumnName = "ID_USER"),
             inverseJoinColumns = @JoinColumn(name = "ID_SHOP_USER_ROLE", referencedColumnName = "ID_USER_ROLE")
     )

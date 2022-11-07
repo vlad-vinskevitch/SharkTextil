@@ -1,5 +1,6 @@
-package com.shark.textil.application.usecase.user;
+package com.shark.textil.application.service.user;
 
+import com.shark.textil.application.exception.UserNotFoundException;
 import com.shark.textil.domain.user.User;
 import com.shark.textil.repository.user.UserRepository;
 import com.shark.textil.service.UserService;
@@ -27,5 +28,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public Optional<User> findByEmail(String email) {
         return this.userRepository.findByEmail(email);
+    }
+
+    @Override
+    public User findById(Long id) {
+        return this.userRepository.findById(id)
+                .orElseThrow(() -> new UserNotFoundException("User with such id not found"));
     }
 }

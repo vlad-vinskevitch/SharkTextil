@@ -63,7 +63,6 @@ public class JwtTokenProviderImpl implements JwtTokenProviderService {
 
     @Override
     public boolean validateToken(final String token) {
-        log.info("Validating token: {}", token);
         try {
             final Jws<Claims> claims = Jwts.parserBuilder()
                     .setSigningKey(this.cryptoAES.getSigningKey(this.jwtProperties.getSecret()))

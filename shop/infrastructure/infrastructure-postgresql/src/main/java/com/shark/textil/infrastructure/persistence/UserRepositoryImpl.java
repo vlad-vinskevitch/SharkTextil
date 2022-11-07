@@ -25,13 +25,19 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
+    public Optional<User> findById(Long id) {
+        final Optional<UserEntity> userEntity = this.userJPARepository.findById(id);
+        return userEntity.map(this.userMapper::asUser);
+    }
+
+    @Override
     public Optional<User> findByEmail(final String email) {
         return this.userJPARepository.findByEmail(email)
                 .map(this.userMapper::asUser);
     }
 
     @Override
-    public User getByEmail(String email) {
+    public User getByEmail(final String email) {
         return this.userMapper.asUser(this.userJPARepository.getByEmail(email));
     }
 }

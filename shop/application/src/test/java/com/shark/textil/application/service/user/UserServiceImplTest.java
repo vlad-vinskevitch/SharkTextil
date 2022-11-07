@@ -1,4 +1,4 @@
-package com.shark.textil.application.usecase.user;
+package com.shark.textil.application.service.user;
 
 import com.shark.textil.domain.user.User;
 import com.shark.textil.domain.user.UserRole;

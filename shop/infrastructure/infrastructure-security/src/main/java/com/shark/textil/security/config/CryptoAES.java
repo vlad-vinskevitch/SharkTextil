@@ -21,19 +21,8 @@ public class CryptoAES {
     private static final String CIPHER_CONFIG_TRANSFORMER = "AES/ECB/PKCS5Padding";
     private static final String SHA_1 = "SHA-1";
     private static final String ALGORITHM = "AES";
-//
-//    @Value("${credentials.secret}")
-//    private String credentialSecret;
-//
-//    public String encryptCredentials(String strToEncrypt) {
-//        if (strToEncrypt == null){
-//            return null;
-//        }
-//        return encrypt(strToEncrypt, credentialSecret);
-//    }
 
     public String encrypt(String strToEncrypt, String secret) {
-        log.info("Encrypting : {}", strToEncrypt);
         try {
             secret = encodeSecret(secret);
             SecretKeySpec secretKey = getSecretKeySpec(secret);
@@ -47,12 +36,7 @@ public class CryptoAES {
         return null;
     }
 
-//    public String decryptCredentials(String strToDecrypt) {
-//        return decrypt(strToDecrypt, credentialSecret);
-//    }
-
     public String decrypt(String strToDecrypt, String secret) {
-        log.info("Decrypting : {}", strToDecrypt);
         try {
             secret = encodeSecret(secret);
             SecretKeySpec secretKey = getSecretKeySpec(secret);

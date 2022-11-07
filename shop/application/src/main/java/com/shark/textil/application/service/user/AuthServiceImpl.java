@@ -1,4 +1,4 @@
-package com.shark.textil.application.usecase.user;
+package com.shark.textil.application.service.user;
 
 import com.shark.textil.application.exception.CantRefreshTokenException;
 import com.shark.textil.application.exception.UserActionException;

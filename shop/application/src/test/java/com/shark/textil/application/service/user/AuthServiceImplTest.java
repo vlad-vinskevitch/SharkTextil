@@ -1,4 +1,4 @@
-package com.shark.textil.application.usecase.user;
+package com.shark.textil.application.service.user;
 
 import com.shark.textil.application.exception.UserActionException;
 import com.shark.textil.domain.auth.AuthRequest;
@@ -66,12 +66,12 @@ class AuthServiceImplTest {
         final User user = givenUser();
         final String email = "email";
 
-        when(userRepository.getByEmail(email)).thenReturn(user);
+        when(this.userRepository.getByEmail(email)).thenReturn(user);
 
         final User actual = this.authService.authorize(authRequest);
 
         assertThat(actual).isEqualTo(user);
-        verify(userRepository).getByEmail(email);
+        verify(this.userRepository).getByEmail(email);
     }
 
     @Test
@@ -80,13 +80,13 @@ class AuthServiceImplTest {
         final User user = givenUser();
         final String email = "email";
 
-        when(userRepository.getByEmail(email)).thenReturn(user);
+        when(this.userRepository.getByEmail(email)).thenReturn(user);
 
         assertThrows(UserActionException.class, () -> {
             this.authService.authorize(authRequest);
         });
 
-        verify(userRepository).getByEmail(email);
+        verify(this.userRepository).getByEmail(email);
     }
 
     private AuthRequest givenAuthRequest(final String password) {
