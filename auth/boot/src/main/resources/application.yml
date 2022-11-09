@@ -1,0 +1,31 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /api/v1/shop
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5433/shark_textil
+    username: root
+    password: root
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl: update
+kafka:
+  configuration:
+    bootstrap-server: localhost:9093
+    producer:
+      retries: 0
+      batch-size: 16384
+      liner-ms: 1
+      buffer-memory: 33554432
+    consumer:
+      group-id: textile-shop-group
+security:
+  jwt:
+    token:
+      secret: V6D7TOZ540pjhy8aHdcQeJzMBfoIx2XlV6D7TOZ540pjhy8aHdcQeJzMBfoIx2Xl
+      bearer: Bearer
+      validity:
+        time: 3600000
+        refresh-time: 18000000
