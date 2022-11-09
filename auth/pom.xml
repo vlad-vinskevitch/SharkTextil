@@ -11,7 +11,7 @@
     </parent>
 
     <groupId>com.shark.textil</groupId>
-    <artifactId>shop</artifactId>
+    <artifactId>auth</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
 

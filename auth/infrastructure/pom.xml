@@ -5,27 +5,25 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <artifactId>shop</artifactId>
+        <artifactId>auth</artifactId>
         <groupId>com.shark.textil</groupId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>domain</artifactId>
+    <artifactId>infrastructure</artifactId>
+    <packaging>pom</packaging>
+
     <name>${project.groupId}:${project.artifactId}</name>
-    <packaging>jar</packaging>
+
+    <modules>
+        <module>infrastructure-postgresql</module>
+        <module>infrastructure-kafka</module>
+        <module>infrastructure-security</module>
+    </modules>
 
     <properties>
         <java.version>17</java.version>
     </properties>
-
-    <dependencies>
-
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <scope>provided</scope>
-        </dependency>
-    </dependencies>
 
     <build>
         <finalName>${parent.artifactId}-${project.version}</finalName>
