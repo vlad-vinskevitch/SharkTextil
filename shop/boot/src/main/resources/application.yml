@@ -1,7 +1,7 @@
 server:
-  port: 8080
+  port: 1010
   servlet:
-    context-path: /api/v1
+    context-path: /api/v1/shop
 spring:
   datasource:
     url: jdbc:postgresql://localhost:5433/shark_textil
@@ -21,11 +21,3 @@ kafka:
       buffer-memory: 33554432
     consumer:
       group-id: textile-shop-group
-security:
-  jwt:
-    token:
-      secret: V6D7TOZ540pjhy8aHdcQeJzMBfoIx2XlV6D7TOZ540pjhy8aHdcQeJzMBfoIx2Xl
-      bearer: Bearer
-      validity:
-        time: 3600000
-        refresh-time: 18000000
