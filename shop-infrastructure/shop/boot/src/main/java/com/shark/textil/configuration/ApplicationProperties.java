@@ -1,4 +1,4 @@
-package com.shark.tesxtil.configuration;
+package com.shark.textil.configuration;
 
 import com.shark.textil.domain.properties.KafkaProperties;
 import org.springframework.boot.context.properties.ConfigurationProperties;
